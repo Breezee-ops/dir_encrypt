@@ -40,13 +40,16 @@ int check (char key){
     return 0;
 }
 
-int main (){
+void help_func(){
+  printf("Provide 2 args, [E]ncrypt or [D]ecrypt and the key to encrypt of decrypt against\n");
+}
+
+int main (int argc, char *argv[]){
     // std::fstream checksum ("checksum.txt");
     std::string file;
     char key;
     char inp;
     // std::string check_text;
-
     int flag = 0;
     int enc_de = 0;
 
@@ -69,14 +72,14 @@ int main (){
     }
 
     std::fstream checksum_i ("checksum.txt");
-    std::cout << "Encrypt or decrypt? E/D" << std::endl;
-    std::cin >> inp;
 
-    std::cout << "Enter key: " << std::endl;
-    std::cin >> key;
-
-    std::cout<< inp << key << std::endl;
-
+    if(argc == 3){
+      inp = *argv[1];
+      key = *argv[2];
+    } else {
+      help_func();
+      return 1;
+    }
 
     // checksum_i.open("checksum.txt");
 
